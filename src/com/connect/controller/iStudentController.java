@@ -13,7 +13,7 @@ public interface iStudentController {
 	
 	Student findById(Integer sid);
 	
-	String updateById(Integer sid);
+	String updateById(Student student);
 	
 	String deleteById(Integer sid);
 }

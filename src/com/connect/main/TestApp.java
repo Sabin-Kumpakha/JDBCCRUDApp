@@ -1,12 +1,11 @@
 package com.connect.main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import com.connect.controller.iStudentController;
 import com.connect.dto.Student;
 import com.connect.factory.StudentControllerFactory;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class TestApp {
 
@@ -66,7 +65,7 @@ public class TestApp {
 				//READ
 				case 2:
 					System.out.print("Enter the student id:: ");
-					sid = Integer.parseInt(br.readLine());	
+					sid = Integer.parseInt(br.readLine());
 					studentRecord = studentController.findById(sid);
 					
 					if (studentRecord != null) {
@@ -76,12 +75,75 @@ public class TestApp {
                         }
 					
 					break;
+				//UPDATE
 				case 3:
+					System.out.print("Enter the id of the record to be updated:: ");
+					sid = Integer.parseInt(br.readLine());
+					studentRecord = studentController.findById(sid);	//oldRecord
+					
+					if (studentRecord != null) {
+						Student newStudent = new Student();
+						newStudent.setSid(sid); //setting the id of the record to be updated 
+                        //if record found then update the record
+						
+						//name
+						System.out.print("StudentName :: [Old Name is :: " + studentRecord.getName() + "]: ");
+						String newName = br.readLine();
+						
+						if (newName == null || newName.equals("")) {
+							newStudent.setName(studentRecord.getName());
+                        } else {
+                        	newStudent.setName(newName);
+						}
+						
+						//email
+						System.out.print("StudentEmail :: [Old Email is :: " + studentRecord.getEmail() + "]: ");
+						String newEmail = br.readLine();
+						
+						if (newEmail == null || newEmail.equals("")) {
+							newStudent.setEmail(studentRecord.getEmail());
+                        } else {
+                        	newStudent.setEmail(newEmail);
+						}
+						
+						//city
+						System.out.print("StudentCity :: [Old City is :: " + studentRecord.getCity() + "]: ");
+						String newCity = br.readLine();
+						
+						if (newCity == null || newCity.equals("")) {
+							newStudent.setCity(studentRecord.getCity());
+                        } else {
+                        	newStudent.setCity(newCity);
+						}
+						
+						//country
+						System.out.print("StudentCountry :: [Old Country is :: " + studentRecord.getCountry() + "]: ");
+						String newCountry = br.readLine();
+						
+						if (newCountry == null || newCountry.equals("")) {
+							newStudent.setCountry(studentRecord.getCountry());
+                        } else {
+                        	newStudent.setCountry(newCountry);
+						}
+						
+						 status = studentController.updateById(newStudent);
+							if (status.equalsIgnoreCase("success")) {
+								System.out.println("Record updated successfully...");
+							} else if (status.equalsIgnoreCase("failure")) {
+								System.out.println("Record updation failed...");
+							} else {
+								System.out.println("Some problem occured...");
+							}
+						
+                    } else {
+                        System.out.println("Record not found for the given id :: " + sid);
+                        }
+					
 					break;
 				//DELETE
 				case 4:
 					System.out.print("Enter the student id:: ");
-					sid = Integer.parseInt(br.readLine());
+					sid = Integer.valueOf(br.readLine());
 					status = studentController.deleteById(sid);
 					if (status.equalsIgnoreCase("success")) {
                         System.out.println("Record deleted successfully...");
@@ -100,7 +162,7 @@ public class TestApp {
 				}
 				
 			} 
-		} catch (Exception e) {
+		} catch (IOException | NumberFormatException e) {
 			e.printStackTrace();
 		}
 		

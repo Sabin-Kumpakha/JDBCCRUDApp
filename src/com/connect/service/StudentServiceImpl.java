@@ -22,8 +22,9 @@ public class StudentServiceImpl implements iStudentService {
 	}
 
 	@Override
-	public String updateById(Integer sid) {
-		return null;
+	public String updateById(Student student) {
+		studentDao = StudentDaoFactory.getStudentDao();
+		return studentDao.updateById(student);
 	}
 
 	@Override

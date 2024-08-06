@@ -8,7 +8,7 @@ public interface iStudentService {
 	
 	Student findById(Integer sid);
 	
-	String updateById(Integer sid);
+	String updateById(Student student);
 	
 	String deleteById(Integer sid);
 	

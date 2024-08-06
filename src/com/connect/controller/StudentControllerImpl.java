@@ -22,8 +22,9 @@ public class StudentControllerImpl implements iStudentController {
 	}
 
 	@Override
-	public String updateById(Integer sid) {
-		return null;
+	public String updateById(Student student) {
+		stdService = StudentServiceFactory.getStudentService();
+		return stdService.updateById(student);
 	}
 
 	@Override
