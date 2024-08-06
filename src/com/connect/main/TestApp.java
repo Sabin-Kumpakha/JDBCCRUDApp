@@ -28,7 +28,7 @@ public class TestApp {
 				System.out.println("5, EXIT");
 				
 				System.out.print("Your Option :: [1,2,3,4,5] ::");
-				Integer option = Integer.parseInt(br.readLine());
+				Integer option = Integer.valueOf(br.readLine());
 
 				studentController = StudentControllerFactory.getStudentController();
 				
@@ -65,7 +65,7 @@ public class TestApp {
 				//READ
 				case 2:
 					System.out.print("Enter the student id:: ");
-					sid = Integer.parseInt(br.readLine());
+					sid = Integer.valueOf(br.readLine());
 					studentRecord = studentController.findById(sid);
 					
 					if (studentRecord != null) {
@@ -78,7 +78,7 @@ public class TestApp {
 				//UPDATE
 				case 3:
 					System.out.print("Enter the id of the record to be updated:: ");
-					sid = Integer.parseInt(br.readLine());
+					sid = Integer.valueOf(br.readLine());
 					studentRecord = studentController.findById(sid);	//oldRecord
 					
 					if (studentRecord != null) {
