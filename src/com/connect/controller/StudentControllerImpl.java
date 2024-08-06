@@ -1,0 +1,35 @@
+package com.connect.controller;
+
+import com.connect.dto.Student;
+import com.connect.factory.StudentServiceFactory;
+import com.connect.service.iStudentService;
+
+public class StudentControllerImpl implements iStudentController {
+	
+	iStudentService stdService;
+
+	@Override
+	public String save(Student student) {
+		stdService = StudentServiceFactory.getStudentService();
+		return stdService.save(student);
+		
+	}
+
+	@Override
+	public Student findById(Integer sid) {
+		stdService = StudentServiceFactory.getStudentService();
+		return stdService.findById(sid);
+	}
+
+	@Override
+	public String updateById(Integer sid) {
+		return null;
+	}
+
+	@Override
+	public String deleteById(Integer sid) {
+		stdService = StudentServiceFactory.getStudentService();
+		return stdService.deleteById(sid);
+	}
+
+}
